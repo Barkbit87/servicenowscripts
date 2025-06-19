@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 if [ $# -eq 0 ]; then
 echo "No arguments provided"
-echo "Usage: $0 [FILENAME] [EXPECTED MD5SUM] [user]:[group]"
+echo "Usage: $0 [FILENAME] [EXPECTED MD5SUM] [user]:[group](optional)"
+exit 1
+
+elif [ -z  $2 ]; then
+echo "Missing expected MD5 sum"
+echo "Usage: $0 [FILENAME] [EXPECTED MD5SUM] [user]:[group](optional)"
 exit 1
 fi
 
@@ -9,8 +14,8 @@ FILE_AND_PATH=$1
 FILE=$(basename $1)
 CHECKSUM=$2
 USERSTR=$3
-if [ -z $USERSTR ]; then
-USERSTR='servicenow:servicenow' #Set user and group, default to "servicenow:servicenow"
+if [ -z $USERSTR ]; then #If USRSTR is empty
+fiUSERSTR='servicenow:servicenow' #Set default to "servicenow:servicenow"
 fi
 
 echo "Checking if MD5 sum matches.."
