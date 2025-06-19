@@ -13,6 +13,7 @@ if [ -z $USERSTR ]; then
 USERSTR='servicenow:servicenow' #Set user and group, default to "servicenow:servicenow"
 fi
 
+echo "Checking if MD5 sum matches.."
 ### Check the MD5SUM provided
 FILESUM=($(md5sum -z $FILE_AND_PATH))
 if [ "$FILESUM" != "$CHECKSUM" ]; then
@@ -20,6 +21,7 @@ if [ "$FILESUM" != "$CHECKSUM" ]; then
     exit 1
 fi
 
+echo "Moving file to node root and setting permissions.."
 ## Move the file to an appropriate location
 sudo mv $FILE_AND_PATH ${NODE_DIR:=/glide/nodes/} # Use variable, otherwise set a default location
 FILE_AND_PATH=$NODE_DIR$FILE # Set new file and path
