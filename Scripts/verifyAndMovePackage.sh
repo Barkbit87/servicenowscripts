@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
-if [ $# -eq 0 ]; then
+if [ $# -eq 0 ]; then #If no arguments provided
 echo "No arguments provided"
 echo "Usage: $0 [FILENAME] [EXPECTED MD5SUM] [user]:[group](optional)"
 exit 1
 
-elif [ -z  $2 ]; then
+elif [ -z  $2 ]; then #If argument 2 omitted
 echo "Missing expected MD5 sum"
 echo "Usage: $0 [FILENAME] [EXPECTED MD5SUM] [user]:[group](optional)"
 exit 1
 fi
 
 FILE_AND_PATH=$1
-FILE=$(basename $1)
+FILE=$(basename $1) #Get filename from argument
 CHECKSUM=$2
 USERSTR=$3
 if [ -z $USERSTR ]; then #If USRSTR is empty
